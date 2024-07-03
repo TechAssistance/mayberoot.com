@@ -5,6 +5,9 @@
     import { PrismicPreview } from '@prismicio/svelte/kit';
 	import { page } from '$app/stores';
 	import { repositoryName } from '$lib/prismicio';
+	import Footer from '$lib/components/Footer.svelte';
+
+	export let data;
 </script>
 
 <svelte:head>
@@ -30,6 +33,6 @@
 
 <div class="background-gradient absolute inset-0 -z-50 max-h-screen" />
 
-<footer></footer>
+<Footer settings={data.settings}/>
 
 <PrismicPreview {repositoryName} />
