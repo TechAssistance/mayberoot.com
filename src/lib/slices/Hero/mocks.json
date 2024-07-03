@@ -1,0 +1,24 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"welcome": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "Salutations,"
+			},
+			"flavor_text": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "Will you discover my secrets? Nick D."
+			},
+			"name": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "Traveler"
+			}
+		},
+		"items": []
+	}
+]
