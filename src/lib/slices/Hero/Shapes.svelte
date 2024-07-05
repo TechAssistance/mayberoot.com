@@ -22,20 +22,20 @@ import Geometry from './Geometry.svelte';
 <!-- <Stars speed ={0.5} lightness={0.8} radius={120}/> -->
 
 <Threlte.PerspectiveCamera
-makeDefault
-position.y={1}
-position.z={15}
-fov={100}
-on:create={({ ref }) => {
-  ref.lookAt(0, 2, 2,)
-}}
->
-  <OrbitControls
-    enableDamping
-    enablePan={false}
-    enableZoom={false}
-    autoRotate
-  />
+  makeDefault
+  position.y={1}
+  position.z={15}
+  fov={100}
+  on:create={({ ref }) => {
+   ref.lookAt(0, 2, 2,)
+  }}
+  >
+    <OrbitControls
+      enableDamping
+      enablePan={false}
+      enableZoom={false}
+      autoRotate
+    />
 </Threlte.PerspectiveCamera>
 
 

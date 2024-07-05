@@ -5,7 +5,7 @@ import Shapes from "./Shapes.svelte";
 </script>
 
 
-<Canvas shadows>
+<Canvas>
     <Shapes />
 </Canvas>
 

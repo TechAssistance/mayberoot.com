@@ -55,14 +55,26 @@
 			}
 		);
 	});
+
+
+	let scroll =0;
 </script>
 
+<!--Pallax var-->
+
+<svelte:window bind:scrollY={scroll} />
+
 <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} class="px-4 md:px-6">
+	<div>
+		<h3>{scroll}</h3>
+	</div>
+	
     <div class="mx-auto w-full max-w-7xl">
         <div class="grid min-h-[65vh] grid-cols-1 items-center md:grid-cols-2">
-        <div class="relative z-10 row-span-1 -my-10 aspect-[1/1.3] overflow-hidden md:col-span-1 md:col-start-2 md:mt-0">
+			<div class="relative z-10 row-span-1 -my-10 aspect-[1/1.3] overflow-hidden md:col-span-1 md:col-start-2 md:mt-0">
             <Scene />
         </div>
+
         <div class="col-start-1 md:row-start-1">
             <h1 class="mb-2 md:mb-8 text-[clamp(3rem,20vmin,8rem)] font-extrabold leading-none tracking-tighter text-nowrap"
             aria-label={slice.primary.welcome + ' ' + slice.primary.name}
@@ -86,4 +98,23 @@
             </div>
         </div>
     </div>
+	<div class="box"></div>
+	<div class="box"></div>
+	<div class="box"></div>
+	<div class="box"></div>
+
 </section>
+
+<style>
+	.box{
+		--size: 300px;
+		height: var(--size);
+		width: var(--size);
+		background: lightgreen;
+		margin-bottom: 1rem;
+	}
+	h3{
+		position: fixed;
+		z-index: 10;
+	}
+</style>

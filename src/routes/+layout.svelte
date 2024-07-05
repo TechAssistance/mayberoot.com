@@ -9,6 +9,7 @@
 	import Header from '$lib/components/Header.svelte';
 
 	export let data;
+
 </script>
 
 <svelte:head>
