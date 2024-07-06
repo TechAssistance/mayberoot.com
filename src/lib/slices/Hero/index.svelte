@@ -125,6 +125,6 @@
 		z-index: 10;
 	}
 	.translate3d_image { 
-            transform: translate3d(100px, ${scroll}px, 0); 
+            transform: translate3d(100px, 0, 0); 
         } 
 </style>
