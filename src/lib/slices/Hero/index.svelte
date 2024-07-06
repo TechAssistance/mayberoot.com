@@ -69,8 +69,11 @@
 		<h3>{scroll}</h3>
 	</div>
     <div class="mx-auto w-full">
-	<div class="bg-fixed bg-cover mx-auto w-full h-200" style="background-image: url(../../../../static/1Stars.svg);"> 
-        <div class="grid min-h-[65vh] grid-cols-1 items-center md:grid-cols-2">
+	<div class="absolute bg-fixed bg-cover mx-auto w-full h-200" style="background-image: url(../../../../static/1Stars.svg);">
+		<div class="inset-0 absolute bg-fixed bg-cover mx-auto w-full h-200"  style="background-image: url(../../../../static/3Mountain.svg);"/> 
+        <div class="inset-0 absolute bg-fixed bg-cover mx-auto w-full h-200"  style="background-image: url(../../../../static/4Mountain.svg);"/>
+		<div class="inset-0 absolute bg-fixed bg-cover mx-auto w-full h-200"  style="background-image: url(../../../../static/5Crater.svg);"/>
+		<div class="grid min-h-[65vh] grid-cols-1 items-center md:grid-cols-2">
 			<div class="relative z-10 row-span-1 -my-10 aspect-[1/1.3] overflow-hidden md:col-span-1 md:col-start-2 md:mt-0">
             <Scene />
         </div>
@@ -103,7 +106,10 @@
 	<div class="box"></div>
 	<div class="box"></div>
 	<div class="box"></div>
-
+	<div class="box"></div>
+	<div class="box" ></div>
+	<div class="box" style:transform={'translate3d(0, ${scroll * 2}px, 0)'}></div>
+	<div class="box translate3d_image" />
 </section>
 
 <style>
@@ -118,4 +124,7 @@
 		position: fixed;
 		z-index: 10;
 	}
+	.translate3d_image { 
+            transform: translate3d(100px, ${scroll}px, 0); 
+        } 
 </style>
