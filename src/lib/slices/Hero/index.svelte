@@ -65,9 +65,6 @@
 
 
 <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} class="">
-	<div>
-		<h3>{scroll}</h3>
-	</div>
     <div class="mx-auto w-full">
 	<div class="absolute bg-fixed bg-cover mx-auto w-full h-200" style="background-image: url(../../../../static/1Stars.svg);">
 		<div class="inset-0 absolute bg-fixed bg-cover mx-auto w-full h-200"  style="background-image: url(../../../../static/3Mountain.svg);"/> 
@@ -77,8 +74,7 @@
 			<div class="relative z-10 row-span-1 -my-10 aspect-[1/1.3] overflow-hidden md:col-span-1 md:col-start-2 md:mt-0">
             <Scene />
         </div>
-		
-        <div class="col-start-1 md:row-start-1">
+        <div class="col-start-1 px-4 md:row-start-1">
             <h1 class="mb-2 md:mb-8 text-[clamp(3rem,20vmin,8rem)] font-extrabold leading-none tracking-tighter text-nowrap"
             aria-label={slice.primary.welcome + ' ' + slice.primary.name}
             >
