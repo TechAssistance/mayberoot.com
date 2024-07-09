@@ -4,7 +4,109 @@ import type * as prismic from '@prismicio/client';
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type PageDocumentDataSlicesSlice = ExperienceSlice | TechListSlice | BiographySlice | HeroSlice;
+type BlogDocumentDataSlicesSlice = RichTextSlice;
+
+/**
+ * Content for Blog documents
+ */
+interface BlogDocumentData {
+	/**
+	 * Title field in *Blog*
+	 *
+	 * - **Field Type**: Title
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog.title
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	title: prismic.TitleField;
+
+	/**
+	 * Description field in *Blog*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog.description
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	description: prismic.RichTextField;
+
+	/**
+	 * Image field in *Blog*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog.image
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	image: prismic.ImageField<never>;
+
+	/**
+	 * Slice Zone field in *Blog*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#slices
+	 */
+	slices: prismic.SliceZone<BlogDocumentDataSlicesSlice> /**
+	 * Meta Title field in *Blog*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: blog.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */;
+	meta_title: prismic.KeyTextField;
+
+	/**
+	 * Meta Description field in *Blog*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: blog.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	meta_description: prismic.KeyTextField;
+
+	/**
+	 * Meta Image field in *Blog*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Blog document from Prismic
+ *
+ * - **API ID**: `blog`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type BlogDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+	Simplify<BlogDocumentData>,
+	'blog',
+	Lang
+>;
+
+type PageDocumentDataSlicesSlice =
+	| BlogsSlice
+	| ExperienceSlice
+	| TechListSlice
+	| BiographySlice
+	| HeroSlice;
 
 /**
  * Content for Page documents
@@ -232,7 +334,7 @@ export type SettingsDocument<Lang extends string = string> = prismic.PrismicDocu
 	Lang
 >;
 
-export type AllDocumentTypes = PageDocument | SettingsDocument;
+export type AllDocumentTypes = BlogDocument | PageDocument | SettingsDocument;
 
 /**
  * Primary content in *Biography → Default → Primary*
@@ -315,6 +417,83 @@ type BiographySliceVariation = BiographySliceDefault;
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type BiographySlice = prismic.SharedSlice<'biography', BiographySliceVariation>;
+
+/**
+ * Item in *Blogs → Default → Primary → blogs*
+ */
+export interface BlogsSliceDefaultPrimaryBlogsItem {
+	/**
+	 * post field in *Blogs → Default → Primary → blogs*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blogs.default.primary.blogs[].post
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	post: prismic.ContentRelationshipField<'blog'>;
+}
+
+/**
+ * Primary content in *Blogs → Default → Primary*
+ */
+export interface BlogsSliceDefaultPrimary {
+	/**
+	 * Heading field in *Blogs → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blogs.default.primary.heading
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	heading: prismic.RichTextField;
+
+	/**
+	 * Body field in *Blogs → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blogs.default.primary.body
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	body: prismic.RichTextField;
+
+	/**
+	 * blogs field in *Blogs → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blogs.default.primary.blogs[]
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	blogs: prismic.GroupField<Simplify<BlogsSliceDefaultPrimaryBlogsItem>>;
+}
+
+/**
+ * Default variation for Blogs Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BlogsSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<BlogsSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *Blogs*
+ */
+type BlogsSliceVariation = BlogsSliceDefault;
+
+/**
+ * Blogs Shared Slice
+ *
+ * - **API ID**: `blogs`
+ * - **Description**: Blogs
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BlogsSlice = prismic.SharedSlice<'blogs', BlogsSliceVariation>;
 
 /**
  * Item in *Experience → Default → Primary → Item*
@@ -604,6 +783,9 @@ declare module '@prismicio/client' {
 
 	namespace Content {
 		export type {
+			BlogDocument,
+			BlogDocumentData,
+			BlogDocumentDataSlicesSlice,
 			PageDocument,
 			PageDocumentData,
 			PageDocumentDataSlicesSlice,
@@ -615,6 +797,11 @@ declare module '@prismicio/client' {
 			BiographySliceDefaultPrimary,
 			BiographySliceVariation,
 			BiographySliceDefault,
+			BlogsSlice,
+			BlogsSliceDefaultPrimaryBlogsItem,
+			BlogsSliceDefaultPrimary,
+			BlogsSliceVariation,
+			BlogsSliceDefault,
 			ExperienceSlice,
 			ExperienceSliceDefaultPrimaryItemItem,
 			ExperienceSliceDefaultPrimary,
