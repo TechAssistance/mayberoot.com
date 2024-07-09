@@ -18,13 +18,13 @@
 <header class="top-0 right-0 z-50 mx-auto max-w-7xl md:sticky md:top-4 relative">
 	<nav>
 		<div
-			class="absolute right-0 flex flex-col justify-between rounded-b-lg bg-sky-950 px-4 py-2 md:m4 md:flex-row md:items-center md:rounded-xl"
+			class="absolute right-0 flex flex-col justify-between rounded-b-lg bg-sky-950 px-8 py-2 md:m4 md:flex-row md:items-center md:rounded-xl"
 		>
 			<div class="flex items-center justify-between">
 				<a
 					href="/"
 					aria-label="Homepage"
-					class="text-xl font-extrabold tracking-tighter text-indigo-50">{settings.data.name}</a
+					class="text-xl font-extrabold px-2 tracking-tighter text-indigo-50">{settings.data.name}</a
 				>
 				<button
 					aria-expanded={open}

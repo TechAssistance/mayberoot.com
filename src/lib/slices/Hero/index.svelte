@@ -57,12 +57,12 @@
 	});
 
 
-	let scroll =0;
+
 </script>
 
 <!--Pallax var-->
 
-<svelte:window bind:scrollY={scroll} />
+
 
 <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} class="">
 	<div>
