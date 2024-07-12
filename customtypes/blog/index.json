@@ -28,10 +28,10 @@
 					"single": "paragraph"
 				}
 			},
-			"image": {
+			"hover_image": {
 				"type": "Image",
 				"config": {
-					"label": "Image",
+					"label": "Hover Image",
 					"constraint": {},
 					"thumbnails": []
 				}

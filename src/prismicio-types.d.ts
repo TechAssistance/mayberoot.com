@@ -33,15 +33,15 @@ interface BlogDocumentData {
 	description: prismic.RichTextField;
 
 	/**
-	 * Image field in *BlogPost*
+	 * Hover Image field in *BlogPost*
 	 *
 	 * - **Field Type**: Image
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: blog.image
+	 * - **API ID Path**: blog.hover_image
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/field#image
 	 */
-	image: prismic.ImageField<never>;
+	hover_image: prismic.ImageField<never>;
 
 	/**
 	 * date field in *BlogPost*
