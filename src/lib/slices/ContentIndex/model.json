@@ -1,7 +1,7 @@
 {
   "id": "blogs",
   "type": "SharedSlice",
-  "name": "Blogs",
+  "name": "ContentIndex",
   "description": "Blogs",
   "variations": [
     {
@@ -19,6 +19,17 @@
             "placeholder": "",
             "allowTargetBlank": true,
             "multi": "heading2"
+          }
+        },
+        "content_type": {
+          "type": "Select",
+          "config": {
+            "label": "Content Type",
+            "placeholder": "",
+            "options": [
+              "Blog",
+              "Project"
+            ]
           }
         },
         "body": {

@@ -7,11 +7,11 @@ type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 type BlogDocumentDataSlicesSlice = RichTextSlice;
 
 /**
- * Content for Blog documents
+ * Content for BlogPost documents
  */
 interface BlogDocumentData {
 	/**
-	 * Title field in *Blog*
+	 * Title field in *BlogPost*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: *None*
@@ -22,7 +22,7 @@ interface BlogDocumentData {
 	title: prismic.KeyTextField;
 
 	/**
-	 * Description field in *Blog*
+	 * Description field in *BlogPost*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: *None*
@@ -33,7 +33,7 @@ interface BlogDocumentData {
 	description: prismic.RichTextField;
 
 	/**
-	 * Image field in *Blog*
+	 * Image field in *BlogPost*
 	 *
 	 * - **Field Type**: Image
 	 * - **Placeholder**: *None*
@@ -44,7 +44,7 @@ interface BlogDocumentData {
 	image: prismic.ImageField<never>;
 
 	/**
-	 * date field in *Blog*
+	 * date field in *BlogPost*
 	 *
 	 * - **Field Type**: Date
 	 * - **Placeholder**: *None*
@@ -55,7 +55,7 @@ interface BlogDocumentData {
 	date: prismic.DateField;
 
 	/**
-	 * Slice Zone field in *Blog*
+	 * Slice Zone field in *BlogPost*
 	 *
 	 * - **Field Type**: Slice Zone
 	 * - **Placeholder**: *None*
@@ -64,7 +64,7 @@ interface BlogDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/field#slices
 	 */
 	slices: prismic.SliceZone<BlogDocumentDataSlicesSlice> /**
-	 * Meta Title field in *Blog*
+	 * Meta Title field in *BlogPost*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: A title of the page used for social media and search engines
@@ -75,7 +75,7 @@ interface BlogDocumentData {
 	meta_title: prismic.KeyTextField;
 
 	/**
-	 * Meta Description field in *Blog*
+	 * Meta Description field in *BlogPost*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: A brief summary of the page
@@ -86,7 +86,7 @@ interface BlogDocumentData {
 	meta_description: prismic.KeyTextField;
 
 	/**
-	 * Meta Image field in *Blog*
+	 * Meta Image field in *BlogPost*
 	 *
 	 * - **Field Type**: Image
 	 * - **Placeholder**: *None*
@@ -98,7 +98,7 @@ interface BlogDocumentData {
 }
 
 /**
- * Blog document from Prismic
+ * BlogPost document from Prismic
  *
  * - **API ID**: `blog`
  * - **Repeatable**: `true`
@@ -189,6 +189,70 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
 	Simplify<PageDocumentData>,
 	'page',
+	Lang
+>;
+
+type ProjectDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Project documents
+ */
+interface ProjectDocumentData {
+	/**
+	 * Slice Zone field in *Project*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: project.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#slices
+	 */
+	slices: prismic.SliceZone<ProjectDocumentDataSlicesSlice> /**
+	 * Meta Title field in *Project*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: project.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */;
+	meta_title: prismic.KeyTextField;
+
+	/**
+	 * Meta Description field in *Project*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: project.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	meta_description: prismic.KeyTextField;
+
+	/**
+	 * Meta Image field in *Project*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: project.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Project document from Prismic
+ *
+ * - **API ID**: `project`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ProjectDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+	Simplify<ProjectDocumentData>,
+	'project',
 	Lang
 >;
 
@@ -345,7 +409,7 @@ export type SettingsDocument<Lang extends string = string> = prismic.PrismicDocu
 	Lang
 >;
 
-export type AllDocumentTypes = BlogDocument | PageDocument | SettingsDocument;
+export type AllDocumentTypes = BlogDocument | PageDocument | ProjectDocument | SettingsDocument;
 
 /**
  * Primary content in *Biography → Default → Primary*
@@ -430,11 +494,11 @@ type BiographySliceVariation = BiographySliceDefault;
 export type BiographySlice = prismic.SharedSlice<'biography', BiographySliceVariation>;
 
 /**
- * Item in *Blogs → Default → Primary → blogs*
+ * Item in *ContentIndex → Default → Primary → blogs*
  */
 export interface BlogsSliceDefaultPrimaryBlogsItem {
 	/**
-	 * post field in *Blogs → Default → Primary → blogs*
+	 * post field in *ContentIndex → Default → Primary → blogs*
 	 *
 	 * - **Field Type**: Content Relationship
 	 * - **Placeholder**: *None*
@@ -445,11 +509,11 @@ export interface BlogsSliceDefaultPrimaryBlogsItem {
 }
 
 /**
- * Primary content in *Blogs → Default → Primary*
+ * Primary content in *ContentIndex → Default → Primary*
  */
 export interface BlogsSliceDefaultPrimary {
 	/**
-	 * Heading field in *Blogs → Default → Primary*
+	 * Heading field in *ContentIndex → Default → Primary*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: *None*
@@ -459,7 +523,17 @@ export interface BlogsSliceDefaultPrimary {
 	heading: prismic.RichTextField;
 
 	/**
-	 * Body field in *Blogs → Default → Primary*
+	 * Content Type field in *ContentIndex → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blogs.default.primary.content_type
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	content_type: prismic.SelectField<'Blog' | 'Project'>;
+
+	/**
+	 * Body field in *ContentIndex → Default → Primary*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: *None*
@@ -469,7 +543,7 @@ export interface BlogsSliceDefaultPrimary {
 	body: prismic.RichTextField;
 
 	/**
-	 * blogs field in *Blogs → Default → Primary*
+	 * blogs field in *ContentIndex → Default → Primary*
 	 *
 	 * - **Field Type**: Group
 	 * - **Placeholder**: *None*
@@ -480,7 +554,7 @@ export interface BlogsSliceDefaultPrimary {
 }
 
 /**
- * Default variation for Blogs Slice
+ * Default variation for ContentIndex Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
@@ -493,12 +567,12 @@ export type BlogsSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
- * Slice variation for *Blogs*
+ * Slice variation for *ContentIndex*
  */
 type BlogsSliceVariation = BlogsSliceDefault;
 
 /**
- * Blogs Shared Slice
+ * ContentIndex Shared Slice
  *
  * - **API ID**: `blogs`
  * - **Description**: Blogs
@@ -842,6 +916,9 @@ declare module '@prismicio/client' {
 			PageDocument,
 			PageDocumentData,
 			PageDocumentDataSlicesSlice,
+			ProjectDocument,
+			ProjectDocumentData,
+			ProjectDocumentDataSlicesSlice,
 			SettingsDocument,
 			SettingsDocumentData,
 			SettingsDocumentDataNavItemItem,

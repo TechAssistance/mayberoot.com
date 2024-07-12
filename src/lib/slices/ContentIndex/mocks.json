@@ -44,6 +44,11 @@
 						]
 					}
 				]
+			},
+			"content_type": {
+				"__TYPE__": "FieldContent",
+				"value": "Project",
+				"type": "Select"
 			}
 		},
 		"items": []
