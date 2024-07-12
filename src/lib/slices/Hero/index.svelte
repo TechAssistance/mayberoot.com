@@ -116,10 +116,6 @@
 		background: lightgreen;
 		margin-bottom: 1rem;
 	}
-	h3{
-		position: fixed;
-		z-index: 10;
-	}
 	.translate3d_image { 
             transform: translate3d(100px, 0, 0); 
         } 
