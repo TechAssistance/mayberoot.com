@@ -9,13 +9,16 @@
 	import Heading from './Heading.svelte';
 
 	export let page: Content.BlogDocument ;
+    console.log(page);
 
 	const formattedDate = formatDate(page.data.date);
 </script>
 
 <Bounded tag="article">
-	<div class="rounded-2xl border-2 border-slate-800 bg-slate-900 px-4 py-10 md:px-8 md:py-20">
-		<Heading tag="h1">{page.data.title}</Heading>
+	<div class="centerrounded-2xl border-2 border-slate-800 bg-slate-900 px-4 py-4 md:px-8 md:py-20">
+		<Heading tag="h1" class="flex justify-center pb-4">{page.data.title}</Heading>
+        <!-- svelte-ignore a11y-missing-attribute -->
+        <img src="{page.data.image.url}"/>
 		<div class="flex gap-4 text-yellow-400">
 			{#each page.tags as tag}
 				<span class="text-xl font-bold">
