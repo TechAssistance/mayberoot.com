@@ -8,7 +8,7 @@
 	import Bounded from './Bounded.svelte';
 	import Heading from './Heading.svelte';
 
-	export let page: Content.BlogpostDocument | Content.ProjectDocument;
+	export let page: Content.BlogDocument ;
 
 	const formattedDate = formatDate(page.data.date);
 </script>

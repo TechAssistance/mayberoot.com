@@ -44,6 +44,17 @@ interface BlogDocumentData {
 	image: prismic.ImageField<never>;
 
 	/**
+	 * date field in *Blog*
+	 *
+	 * - **Field Type**: Date
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blog.date
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#date
+	 */
+	date: prismic.DateField;
+
+	/**
 	 * Slice Zone field in *Blog*
 	 *
 	 * - **Field Type**: Slice Zone
