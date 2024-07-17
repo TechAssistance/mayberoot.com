@@ -5,11 +5,10 @@ import ContentIndex from './index.svelte';
 
 type Context = { client: Client<Content.AllDocumentTypes> };
 
-const mapper: SliceMapper<
-	Content.BlogsSlice,
-	ComponentProps<ContentIndex>,
-	Context
-> = async ({ slice, context }) => {
+const mapper: SliceMapper<Content.BlogsSlice, ComponentProps<ContentIndex>, Context> = async ({
+	slice,
+	context
+}) => {
 	const { client } = context;
 
 	const items =
