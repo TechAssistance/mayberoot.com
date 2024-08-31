@@ -6,7 +6,7 @@
 	import ContentList from './ContentList.svelte';
 
 	export let slice: Content.BlogsSlice;
-	export let items: Content.BlogDocument[];
+	export let items: Content.BlogDocument[] | Content.ProjectDocument[];
 </script>
 
 <Bounded data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
@@ -19,9 +19,5 @@
 		</div>
 	{/if}
 
-	<ContentList
-		{items}
-		fallbackItemImage={slice.primary.fallback_item_image}
-		viewMoreText={slice.primary.view_more_text}
-	/>
+	<ContentList {items} viewMoreText={slice.primary.view_more_text} />
 </Bounded>

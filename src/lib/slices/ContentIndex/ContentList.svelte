@@ -16,21 +16,21 @@
 	gsap.registerPlugin(ScrollTrigger);
 
 	export let items: Content.BlogDocument[] | Content.ProjectDocument[];
-	export let fallbackItemImage: ImageField;
+	// export let fallbackItemImage: ImageField;
 	export let viewMoreText: KeyTextField = 'Read More';
 
-	let lastMousePos = { x: 0, y: 0 };
-	let currentIndex: number | undefined;
+	// let lastMousePos = { x: 0, y: 0 };
+	// let currentIndex: number | undefined;
 
-	$: contentImages = items.map((item) => {
-		const image = isFilled.image(item.data.hover_image) ? item.data.hover_image : fallbackItemImage;
-		return asImageSrc(image, {
-			fit: 'crop',
-			w: 220,
-			h: 320,
-			exp: -10
-		});
-	});
+	// $: contentImages = items.map((item) => {
+	// 	const image = isFilled.image(item.data.hover_image) ? item.data.hover_image : fallbackItemImage;
+	// 	return asImageSrc(image, {
+	// 		fit: 'crop',
+	// 		w: 220,
+	// 		h: 320,
+	// 		exp: -10
+	// 	});
+	// });
 
 	const onItemEnter: Action<HTMLElement, number> = (node, index) => {
 		gsap.fromTo(
@@ -53,62 +53,58 @@
 				}
 			}
 		);
-
-		const imageUrl = contentImages[index];
-		if (imageUrl) {
-			const img = new Image();
-			img.src = imageUrl;
-		}
-
-		return {
-			destroy() {}
-		};
 	};
+	// const imageUrl = contentImages[index];
+	// if (imageUrl) {
+	// 	const img = new Image();
+	// 	img.src = imageUrl;
+	// }
 
-	const handleMouseMove = (e: MouseEvent) => {
-		const mousePos = { x: e.clientX, y: e.clientY + window.scrollY };
+	// return {
+	// 	destroy() {}
+	// };
+	// };
 
-		const speed = Math.sqrt(Math.pow(mousePos.x - lastMousePos.x, 2));
+	// const handleMouseMove = (e: MouseEvent) => {
+	// 	const mousePos = { x: e.clientX, y: e.clientY + window.scrollY };
 
-		const maxY = window.scrollY + window.innerHeight - 350;
-		const maxX = window.innerWidth - 250;
+	// 	const speed = Math.sqrt(Math.pow(mousePos.x - lastMousePos.x, 2));
 
-		gsap.to('.hover-reveal', {
-			x: gsap.utils.clamp(0, maxX, mousePos.x - 110),
-			y: gsap.utils.clamp(0, maxY, mousePos.y - 160),
-			rotation: speed * (mousePos.x > lastMousePos.x ? 1 : -1),
-			ease: 'back.out(2)',
-			duration: 1.3
-		});
+	// 	const maxY = window.scrollY + window.innerHeight - 350;
+	// 	const maxX = window.innerWidth - 250;
 
-		gsap.to('.hover-reveal', {
-			opacity: currentIndex === undefined ? 0 : 1,
-			visibility: 'visible',
-			ease: 'power3.out',
-			duration: 0.6
-		});
+	// 	gsap.to('.hover-reveal', {
+	// 		x: gsap.utils.clamp(0, maxX, mousePos.x - 110),
+	// 		y: gsap.utils.clamp(0, maxY, mousePos.y - 160),
+	// 		rotation: speed * (mousePos.x > lastMousePos.x ? 1 : -1),
+	// 		ease: 'back.out(2)',
+	// 		duration: 1.3
+	// 	});
 
-		lastMousePos = mousePos;
-	};
+	// 	gsap.to('.hover-reveal', {
+	// 		opacity: currentIndex === undefined ? 0 : 1,
+	// 		visibility: 'visible',
+	// 		ease: 'power3.out',
+	// 		duration: 0.6
+	// 	});
 
-	const onMouseEnter = (index: number) => {
-		currentIndex = index;
-	};
+	// 	lastMousePos = mousePos;
+	// };
 
-	const onMouseLeave = () => {
-		currentIndex = undefined;
-	};
+	// const onMouseEnter = (index: number) => {
+	// 	currentIndex = index;
+	// };
+
+	// const onMouseLeave = () => {
+	// 	currentIndex = undefined;
+	// };
 </script>
 
-<svelte:window on:mousemove={handleMouseMove} />
+<!-- <svelte:window on:mousemove={handleMouseMove} /> -->
 
-<ul on:mouseleave={onMouseLeave} class="grid border-b border-b-slate-100">
+<ul class="grid border-b border-b-slate-100">
 	{#each items as post, index (post.id + index)}
-		<li
-			on:mouseenter={() => onMouseEnter(index)}
-			class="content-list-item opacity-0"
-			use:onItemEnter={index}
-		>
+		<li class="content-list-item opacity-0" use:onItemEnter={index}>
 			<PrismicLink
 				document={post}
 				class="flex flex-col justify-between border-t border-t-slate-100 py-10 text-slate-200 md:flex-row"
@@ -133,7 +129,7 @@
 </ul>
 
 <!-- Hover element -->
-<div
+<!-- <div
 	class="hover-reveal pointer-events-none absolute left-0 top-0 -z-10 h-[320px] w-[220px] rounded-lg bg-cover bg-center opacity-0 transition-[background] duration-300"
 	style={currentIndex === undefined ? '' : `background-image: url(${contentImages[currentIndex]})`}
-></div>
+></div> -->

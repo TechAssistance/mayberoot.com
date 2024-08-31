@@ -49,6 +49,11 @@
 				"__TYPE__": "FieldContent",
 				"value": "Project",
 				"type": "Select"
+			},
+			"view_more_text": {
+				"__TYPE__": "FieldContent",
+				"value": "important",
+				"type": "Text"
 			}
 		},
 		"items": []

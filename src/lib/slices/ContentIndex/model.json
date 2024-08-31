@@ -59,6 +59,13 @@
               }
             }
           }
+        },
+        "view_more_text": {
+          "type": "Text",
+          "config": {
+            "label": "View More Text",
+            "placeholder": ""
+          }
         }
       },
       "items": {}

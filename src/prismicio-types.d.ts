@@ -192,7 +192,7 @@ export type PageDocument<Lang extends string = string> = prismic.PrismicDocument
 	Lang
 >;
 
-type ProjectDocumentDataSlicesSlice = never;
+type ProjectDocumentDataSlicesSlice = RichTextSlice;
 
 /**
  * Content for Project documents
@@ -551,6 +551,16 @@ export interface BlogsSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/field#group
 	 */
 	blogs: prismic.GroupField<Simplify<BlogsSliceDefaultPrimaryBlogsItem>>;
+
+	/**
+	 * View More Text field in *ContentIndex → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: blogs.default.primary.view_more_text
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	view_more_text: prismic.KeyTextField;
 }
 
 /**
